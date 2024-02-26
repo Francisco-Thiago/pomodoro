@@ -10,8 +10,7 @@ export class CounterComponent {
   counter = 0;
   buttonContent = 'Iniciar';
   counterFormatted = '00:00';
-
-  interval;
+  interval: NodeJS.Timeout;
 
   run() {
     this.toggle();
