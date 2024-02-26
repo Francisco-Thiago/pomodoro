@@ -1,0 +1,30 @@
+@import './mixins.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  @include flex-column-center();
+  color: white;
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: min-content;
+
+    .title {
+      font-size: 4em;
+    }
+
+    .subtitle {
+      font-size: 1em;
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+    }
+  }
+}

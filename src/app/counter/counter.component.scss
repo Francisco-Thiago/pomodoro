@@ -1,0 +1,20 @@
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+
+  .counter {
+    color: #ffffff;
+    font-size: 3em;
+  }
+}
+
+.button {
+  margin: 1em 0;
+  width: 300px;
+  height: 50px;
+}
