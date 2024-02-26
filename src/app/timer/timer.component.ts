@@ -1,16 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Timer, Type } from '../timer.model';
 
 @Component({
-  selector: 'app-counter',
-  templateUrl: './counter.component.html',
-  styleUrl: './counter.component.scss',
+  selector: 'app-timer',
+  templateUrl: './timer.component.html',
+  styleUrl: './timer.component.scss',
 })
-export class CounterComponent {
-  status = false;
-  counter = 0;
-  buttonContent = 'Iniciar';
-  counterFormatted = '00:00';
+export class CounterComponent implements OnInit {
+  @Input('timer') defaultTimer: Timer;
+
+  status: boolean;
+  counter: number;
+  limit: number;
+  type: Type;
+  buttonContent: string;
+  counterFormatted: string;
   interval: NodeJS.Timeout;
+
+  constructor() {
+    this.status = false;
+    this.counterFormatted = '00:00';
+  }
+
+  ngOnInit(): void {
+    this.counter = this.defaultTimer.counter;
+    this.limit = this.defaultTimer.limit;
+    this.type = this.defaultTimer.type;
+    this.buttonText();
+  }
 
   run() {
     this.toggle();
@@ -20,7 +37,7 @@ export class CounterComponent {
   timer() {
     if (this.status) {
       this.interval = setInterval(() => {
-        this.counter < 1500 ? (this.counter += 1) : this.timeLimit();
+        this.counter < this.limit ? (this.counter += 1) : this.finish();
         this.formatCounter();
       }, 1000);
     } else {
@@ -28,7 +45,7 @@ export class CounterComponent {
     }
   }
 
-  timeLimit() {
+  finish() {
     this.toggle();
     clearInterval(this.interval);
     this.counter = 0;
@@ -43,7 +60,7 @@ export class CounterComponent {
   buttonText() {
     if (this.status) {
       this.buttonContent = 'Pausar';
-    } else if (this.counter === 0 || this.counter >= 1500) {
+    } else if (this.counter === 0 || this.counter >= this.limit) {
       this.buttonContent = 'Iniciar';
     } else {
       this.buttonContent = 'Continuar';
