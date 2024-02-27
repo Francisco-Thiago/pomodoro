@@ -33,7 +33,7 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.isClear) this.clearCounter();
+    if(this.isClear) this.clearCounter();
   }
 
   run() {
@@ -42,7 +42,7 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   timer() {
-    if (this.status ) {
+    if (this.status) {
       this.interval = setInterval(() => {
         this.counter < this.limit ? (this.counter += 1) : this.finish();
         this.formatCounter();
@@ -92,9 +92,10 @@ export class CounterComponent implements OnInit, OnChanges {
   clearCounter() {
     if(this.isClear) {
       this.counter = 0;
-      this.toggle();
+      this.status = false;
       this.formatCounter(this.limit);
       clearInterval(this.interval);
+      this.buttonText()
     }
   }
 }
