@@ -15,7 +15,7 @@
     color: black;
     border: none;
 
-    &.selected {
+    &:hover {
       background-color: #ab0000;
     }
   }
