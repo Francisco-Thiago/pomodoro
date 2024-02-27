@@ -18,6 +18,6 @@ export class TimersComponent {
     type: Type.Rest,
     sessions: 0,
     counter: 0,
-    limit: 1500,
+    limit: 300,
   };
 }
