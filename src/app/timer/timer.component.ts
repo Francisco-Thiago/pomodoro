@@ -11,6 +11,7 @@ export class CounterComponent implements OnInit {
 
   status: boolean;
   counter: number;
+  sessions: number;
   limit: number;
   type: Type;
   buttonContent: string;
@@ -19,13 +20,14 @@ export class CounterComponent implements OnInit {
 
   constructor() {
     this.status = false;
-    this.counterFormatted = '00:00';
+    this.sessions = 0;
   }
 
   ngOnInit(): void {
     this.counter = this.defaultTimer.counter;
     this.limit = this.defaultTimer.limit;
     this.type = this.defaultTimer.type;
+    this.formatCounter(this.limit)
     this.buttonText();
   }
 
@@ -48,8 +50,15 @@ export class CounterComponent implements OnInit {
   finish() {
     this.toggle();
     clearInterval(this.interval);
+    this.breakSession();
+    this.formatCounter(this.limit)
     this.counter = 0;
-    console.log('Parabéns :)');
+  }
+
+  breakSession() {
+    this.sessions += 1;
+    const isLongBreak = this.sessions % 4 === 0 && this.type === Type.Rest;
+    this.limit = isLongBreak ? 900 : 300;
   }
 
   toggle() {
@@ -67,9 +76,9 @@ export class CounterComponent implements OnInit {
     }
   }
 
-  formatCounter() {
-    const minutes = Math.trunc(this.counter / 60);
-    const seconds = this.counter % 60;
+  formatCounter(counter = this.counter) {
+    const minutes = Math.trunc(counter / 60);
+    const seconds = counter % 60;
     this.counterFormatted = `
         ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
       `;

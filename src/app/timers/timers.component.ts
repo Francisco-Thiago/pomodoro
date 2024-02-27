@@ -7,8 +7,16 @@ import { Timer, Type } from '../timer.model';
   styleUrl: './timers.component.scss',
 })
 export class TimersComponent {
-  timer: Timer = {
+  work: Timer = {
     type: Type.Work,
+    sessions: 0,
+    counter: 0,
+    limit: 1500,
+  };
+
+  rest: Timer = {
+    type: Type.Rest,
+    sessions: 0,
     counter: 0,
     limit: 1500,
   };
