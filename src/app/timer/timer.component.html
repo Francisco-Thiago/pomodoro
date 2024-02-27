@@ -1,4 +1,5 @@
 <div class="circle">
   <span class="counter">{{ counterFormatted }}</span>
 </div>
+<button (click)="toggleAuto()">{{ auto ? "Automático" : "Manual" }}</button>
 <button class="button" (click)="run()">{{ buttonContent }}</button>

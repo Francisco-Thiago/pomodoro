@@ -18,8 +18,10 @@ export class CounterComponent implements OnInit, OnChanges {
   buttonContent: string;
   counterFormatted: string;
   interval: NodeJS.Timeout;
+  auto: boolean;
 
   constructor() {
+    this.auto = true;
     this.status = false;
     this.sessions = 0;
   }
@@ -37,7 +39,7 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   run() {
-    this.toggle();
+    this.toggleStatus();
     this.timer();
   }
 
@@ -54,7 +56,7 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   finish() {
-    this.toggle();
+    this.toggleStatus();
     clearInterval(this.interval);
     this.breakSession();
     this.formatCounter(this.limit)
@@ -67,7 +69,7 @@ export class CounterComponent implements OnInit, OnChanges {
     this.limit = isLongBreak ? 900 : 300;
   }
 
-  toggle() {
+  toggleStatus() {
     this.status = !this.status;
     this.buttonText();
   }
@@ -88,6 +90,10 @@ export class CounterComponent implements OnInit, OnChanges {
     this.counterFormatted = `
         ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
       `;
+  }
+
+  toggleAuto() {
+    this.auto = !this.auto;
   }
 
   clearCounter() {
