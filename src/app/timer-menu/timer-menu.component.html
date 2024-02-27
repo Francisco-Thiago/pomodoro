@@ -1,10 +1,10 @@
 <div class="button-groups">
   <button class="eraser" (click)="clearCounter()">Limpar</button>
   <button
-    *ngFor="let mode of modeOptions | keyvalue"
-    (click)="onSelected(mode.value)"
-    [ngClass]="{ button: true, selected: selectedMode === mode.value }"
+    *ngFor="let option of modeOptions | keyvalue"
+    (click)="onSelected(option.value)"
+    [ngClass]="{ button: true, selected: mode === option.value }"
   >
-    {{ mode.value }}
+    {{ option.value }}
   </button>
 </div>

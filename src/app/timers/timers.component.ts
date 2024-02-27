@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Timer, Type } from '../timer.model';
 
 @Component({
@@ -10,6 +10,7 @@ export class TimersComponent {
   mode = Type.Work;
   modeOptions = Type;
   clear = false;
+  auto = true;
 
   work: Timer = {
     type: Type.Work,
@@ -24,6 +25,19 @@ export class TimersComponent {
     counter: 0,
     limit: 300,
   };
+
+  changeAuto(auto: boolean) {
+    this.auto = auto;
+  }
+
+  finish(timer: Timer) {
+    if(this.work.type === timer.type) {
+      this.work = timer;
+    }else {
+      this.rest = timer;
+    }
+    if(this.auto) this.onMode(Type.Work === timer.type ? Type.Rest : Type.Work);
+  }
 
   onMode(seletedMode: Type) {
     this.mode = seletedMode;

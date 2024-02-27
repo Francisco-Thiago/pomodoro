@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Type } from '../timer.model';
 
 @Component({
@@ -7,15 +7,15 @@ import { Type } from '../timer.model';
   styleUrl: './timer-menu.component.scss'
 })
 export class TimerMenuComponent {
+  @Input('mode') mode: Type;
   @Output('modeSelected') selected: EventEmitter<Type> = new EventEmitter();
   @Output('clear') clear: EventEmitter<null> = new EventEmitter();
 
   modeOptions = Type;
-  selectedMode = Type.Work
 
   onSelected(mode: Type) {
-    this.selectedMode = mode;
-    this.selected.emit(this.selectedMode)
+    this.mode = mode;
+    this.selected.emit(this.mode)
   }
 
   clearCounter() {

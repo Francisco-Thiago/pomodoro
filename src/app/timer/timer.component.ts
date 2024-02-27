@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Timer, Type } from '../timer.model';
 
 @Component({
@@ -9,6 +17,9 @@ import { Timer, Type } from '../timer.model';
 export class CounterComponent implements OnInit, OnChanges {
   @Input('timer') defaultTimer: Timer;
   @Input('clear') isClear: boolean;
+  @Output('finish') score: EventEmitter<Timer> = new EventEmitter();
+  @Output('auto') externalAuto: EventEmitter<boolean> = new EventEmitter();
+  @Input('auto') internalAuto: boolean;
 
   status: boolean;
   counter: number;
@@ -18,10 +29,8 @@ export class CounterComponent implements OnInit, OnChanges {
   buttonContent: string;
   counterFormatted: string;
   interval: NodeJS.Timeout;
-  auto: boolean;
 
   constructor() {
-    this.auto = true;
     this.status = false;
     this.sessions = 0;
   }
@@ -30,12 +39,16 @@ export class CounterComponent implements OnInit, OnChanges {
     this.counter = this.defaultTimer.counter;
     this.limit = this.defaultTimer.limit;
     this.type = this.defaultTimer.type;
-    this.formatCounter(this.limit)
+    this.sessions = this.defaultTimer.sessions;
+    this.formatCounter(this.limit);
     this.buttonText();
+    if (this.internalAuto && this.sessions > 0 || this.internalAuto && this.type === Type.Rest) {
+      this.run();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.isClear) this.clearCounter();
+    if (this.isClear) this.clearCounter();
   }
 
   run() {
@@ -58,15 +71,22 @@ export class CounterComponent implements OnInit, OnChanges {
   finish() {
     this.toggleStatus();
     clearInterval(this.interval);
-    this.breakSession();
-    this.formatCounter(this.limit)
+    this.formatCounter(this.limit);
     this.counter = 0;
+    this.incrementSession();
+    this.updateScore();
   }
 
-  breakSession() {
+  updateScore() {
+    const timer = new Timer(this.limit, this.counter, this.sessions, this.type)
+    this.score.emit(timer);
+  }
+
+  incrementSession() {
     this.sessions += 1;
-    const isLongBreak = this.sessions % 4 === 0 && this.type === Type.Rest;
-    this.limit = isLongBreak ? 900 : 300;
+    if (this.type === Type.Rest) {
+      this.limit = this.sessions % 4 === 0 ? 900 : 300;
+    }
   }
 
   toggleStatus() {
@@ -93,16 +113,17 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   toggleAuto() {
-    this.auto = !this.auto;
+    this.internalAuto = !this.internalAuto;
+    this.externalAuto.emit(this.internalAuto);
   }
 
   clearCounter() {
-    if(this.isClear) {
+    if (this.isClear) {
       this.counter = 0;
       this.status = false;
       this.formatCounter(this.limit);
       clearInterval(this.interval);
-      this.buttonText()
+      this.buttonText();
     }
   }
 }

@@ -1,3 +1,21 @@
-<app-timer-menu (modeSelected)="onMode($event)" (clear)="onClear()"></app-timer-menu>
-<app-timer [timer]="work" [clear]="clear" *ngIf="mode === modeOptions.Work"></app-timer>
-<app-timer [timer]="rest" [clear]="clear" *ngIf="mode === modeOptions.Rest"></app-timer>
+<app-timer-menu
+  [mode]="mode"
+  (modeSelected)="onMode($event)"
+  (clear)="onClear()"
+></app-timer-menu>
+<app-timer
+  [timer]="work"
+  [clear]="clear"
+  [auto]="auto"
+  (auto)="changeAuto($event)"
+  (finish)="finish($event)"
+  *ngIf="mode === modeOptions.Work"
+></app-timer>
+<app-timer
+  [timer]="rest"
+  [clear]="clear"
+  [auto]="auto"
+  (auto)="changeAuto($event)"
+  (finish)="finish($event)"
+  *ngIf="mode === modeOptions.Rest"
+></app-timer>
