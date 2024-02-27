@@ -8,6 +8,6 @@ export class Timer {
 }
 
 export enum Type {
-  Rest = 'Rest',
   Work = 'Work',
+  Rest = 'Rest',
 }

@@ -1,2 +1,3 @@
-<app-timer [timer]="work"></app-timer>
-<app-timer [timer]="rest"></app-timer>
+<app-timer-menu (modeSelected)="onMode($event)" (clear)="onClear()"></app-timer-menu>
+<app-timer [timer]="work" [clear]="clear" *ngIf="mode === modeOptions.Work"></app-timer>
+<app-timer [timer]="rest" [clear]="clear" *ngIf="mode === modeOptions.Rest"></app-timer>

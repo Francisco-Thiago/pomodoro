@@ -1,0 +1,40 @@
+.button-groups {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 1em 0;
+  gap: .25em;
+
+  .eraser {
+    background-color: #ff0000;
+    border-radius: .25em;
+    cursor: pointer;
+    padding: .75em 1em;
+    min-width: 100px;
+    color: black;
+    border: none;
+
+    &.selected {
+      background-color: #ab0000;
+    }
+  }
+
+  .button {
+    background-color: #ffffffdf;
+    border-radius: .25em;
+    cursor: pointer;
+    padding: .75em 1em;
+    min-width: 100px;
+    color: black;
+    border: none;
+
+    &:hover {
+      background-color: #ffffff;
+    }
+
+    &.selected {
+      background-color: #ffffff;
+    }
+  }
+}

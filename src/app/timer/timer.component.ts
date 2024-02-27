@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Timer, Type } from '../timer.model';
 
 @Component({
@@ -8,6 +8,7 @@ import { Timer, Type } from '../timer.model';
 })
 export class CounterComponent implements OnInit {
   @Input('timer') defaultTimer: Timer;
+  @Input('clear') isClear: boolean;
 
   status: boolean;
   counter: number;
@@ -37,10 +38,11 @@ export class CounterComponent implements OnInit {
   }
 
   timer() {
-    if (this.status) {
+    if (this.status ) {
       this.interval = setInterval(() => {
         this.counter < this.limit ? (this.counter += 1) : this.finish();
         this.formatCounter();
+        this.checkClear();
       }, 1000);
     } else {
       clearInterval(this.interval);
@@ -82,5 +84,14 @@ export class CounterComponent implements OnInit {
     this.counterFormatted = `
         ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
       `;
+  }
+
+  checkClear() {
+    if(this.isClear) {
+      this.counter = 0;
+      this.toggle();
+      this.formatCounter(this.limit);
+      clearInterval(this.interval);
+    }
   }
 }
