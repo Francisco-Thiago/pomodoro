@@ -42,6 +42,7 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   timer() {
+    this.formatCounter();
     if (this.status) {
       this.interval = setInterval(() => {
         this.counter < this.limit ? (this.counter += 1) : this.finish();
