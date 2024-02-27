@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Timer, Type } from '../timer.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { Timer, Type } from '../timer.model';
   templateUrl: './timer.component.html',
   styleUrl: './timer.component.scss',
 })
-export class CounterComponent implements OnInit {
+export class CounterComponent implements OnInit, OnChanges {
   @Input('timer') defaultTimer: Timer;
   @Input('clear') isClear: boolean;
 
@@ -32,6 +32,10 @@ export class CounterComponent implements OnInit {
     this.buttonText();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.isClear) this.clearCounter();
+  }
+
   run() {
     this.toggle();
     this.timer();
@@ -42,7 +46,6 @@ export class CounterComponent implements OnInit {
       this.interval = setInterval(() => {
         this.counter < this.limit ? (this.counter += 1) : this.finish();
         this.formatCounter();
-        this.checkClear();
       }, 1000);
     } else {
       clearInterval(this.interval);
@@ -86,7 +89,7 @@ export class CounterComponent implements OnInit {
       `;
   }
 
-  checkClear() {
+  clearCounter() {
     if(this.isClear) {
       this.counter = 0;
       this.toggle();
