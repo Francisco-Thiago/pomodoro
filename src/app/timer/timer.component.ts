@@ -8,6 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Timer, Type } from '../timer.model';
+import { Howl } from 'howler';
 
 @Component({
   selector: 'app-timer',
@@ -29,6 +30,8 @@ export class CounterComponent implements OnInit, OnChanges {
   buttonContent: string;
   counterFormatted: string;
   interval: NodeJS.Timeout;
+  alarm: Howl;
+  audioLoaded: boolean;
 
   constructor() {
     this.status = false;
@@ -42,7 +45,10 @@ export class CounterComponent implements OnInit, OnChanges {
     this.sessions = this.defaultTimer.sessions;
     this.formatCounter(this.limit);
     this.buttonText();
-    if (this.internalAuto && this.sessions > 0 || this.internalAuto && this.type === Type.Rest) {
+    if (
+      (this.internalAuto && this.sessions > 0) ||
+      (this.internalAuto && this.type === Type.Rest)
+    ) {
       this.run();
     }
   }
@@ -69,6 +75,7 @@ export class CounterComponent implements OnInit, OnChanges {
   }
 
   finish() {
+    this.playAlarm();
     this.toggleStatus();
     clearInterval(this.interval);
     this.formatCounter(this.limit);
@@ -77,8 +84,17 @@ export class CounterComponent implements OnInit, OnChanges {
     this.updateScore();
   }
 
+  playAlarm() {
+    if (!this.alarm) {
+      this.alarm = new Howl({
+        src: ['../../assets/pomodoro-sound.mp3'],
+      });
+    }
+    this.alarm.play();
+  }
+
   updateScore() {
-    const timer = new Timer(this.limit, this.counter, this.sessions, this.type)
+    const timer = new Timer(this.limit, this.counter, this.sessions, this.type);
     this.score.emit(timer);
   }
 
