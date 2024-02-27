@@ -18,6 +18,7 @@ import { Howl } from 'howler';
 export class CounterComponent implements OnInit, OnChanges {
   @Input('timer') defaultTimer: Timer;
   @Input('clear') isClear: boolean;
+  @Input() autoBreak: boolean;
   @Output('finish') score: EventEmitter<Timer> = new EventEmitter();
   @Output('auto') externalAuto: EventEmitter<boolean> = new EventEmitter();
   @Input('auto') internalAuto: boolean;
@@ -31,7 +32,7 @@ export class CounterComponent implements OnInit, OnChanges {
   counterFormatted: string;
   interval: NodeJS.Timeout;
   alarm: Howl;
-  audioLoaded: boolean;
+  break: boolean;
 
   constructor() {
     this.status = false;
@@ -47,13 +48,13 @@ export class CounterComponent implements OnInit, OnChanges {
     this.buttonText();
     if (
       (this.internalAuto && this.sessions > 0) ||
-      (this.internalAuto && this.type === Type.Rest)
+      (this.internalAuto && this.autoBreak)
     ) {
       this.run();
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.isClear) this.clearCounter();
   }
 

@@ -11,6 +11,7 @@ export class TimersComponent {
   modeOptions = Type;
   clear = false;
   auto = true;
+  autoBreak = false;
 
   work: Timer = {
     type: Type.Work,
@@ -31,20 +32,24 @@ export class TimersComponent {
   }
 
   finish(timer: Timer) {
-    if(this.work.type === timer.type) {
+    this.autoBreak = true;
+    if (this.auto) this.mode = Type.Work === timer.type ? Type.Rest : Type.Work;
+    if (this.work.type === timer.type) {
       this.work = timer;
-    }else {
+    } else {
       this.rest = timer;
     }
-    if(this.auto) this.onMode(Type.Work === timer.type ? Type.Rest : Type.Work);
   }
 
   onMode(seletedMode: Type) {
     this.mode = seletedMode;
+    this.autoBreak = false;
   }
 
   onClear() {
     this.clear = true;
-    setTimeout(() => {this.clear = false}, 1000);
+    setTimeout(() => {
+      this.clear = false;
+    }, 1000);
   }
 }
