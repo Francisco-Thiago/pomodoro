@@ -1,7 +1,8 @@
 # Pomodoro
 
-<img style="width: 300px;" src="https://github.com/Francisco-Thiago/pomodoro/assets/75057408/bb030ae3-c45d-43cf-a593-e21ea84cceb1"/>
-<img style="width: 300px;" src="https://github.com/Francisco-Thiago/pomodoro/assets/75057408/23ff29f9-8a8c-49d5-8919-21bf651f2f55"/>
+<img style="width: 300px; height: 400px;" src="https://github.com/Francisco-Thiago/pomodoro/assets/75057408/4c66fb75-fa77-4e7e-8ff3-60f2177a5544"/>
+<img style="width: 300px; height: 400px;" src="https://github.com/Francisco-Thiago/pomodoro/assets/75057408/89aacc34-5967-4b51-8037-51e7ba49c3ed"/>
+
 
 First version created. There is a timer, a button and a text logo.
 
