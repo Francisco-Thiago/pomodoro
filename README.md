@@ -5,6 +5,8 @@
 
 First version created. There is a timer, a button and a text logo.
 
+``URL:`` <a href="https://pomodoro-francisco-thiago.vercel.app/" target="_blank">Pomodoro</a>
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
