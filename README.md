@@ -6,7 +6,7 @@
 
 First version created. There is a timer, a button and a text logo.
 
-``URL:`` <a href="https://pomodoro-francisco-thiago.vercel.app/" target="_blank">Pomodoro</a>
+``URL:`` <a href="https://pomodoro-git-feature-v2-francisco-thiago.vercel.app/" target="_blank">Pomodoro</a>
 
 ## Development server
 
