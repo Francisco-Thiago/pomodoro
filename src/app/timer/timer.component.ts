@@ -67,7 +67,7 @@ export class CounterComponent implements OnInit, OnChanges {
     this.formatCounter();
     if (this.status) {
       this.interval = setInterval(() => {
-        this.counter < this.limit ? (this.counter += 1) : this.finish();
+        this.counter != 0 ? (this.counter -= 1) : this.finish();
         this.formatCounter();
       }, 1000);
     } else {
@@ -80,7 +80,7 @@ export class CounterComponent implements OnInit, OnChanges {
     this.toggleStatus();
     clearInterval(this.interval);
     this.formatCounter(this.limit);
-    this.counter = 0;
+    this.counter = this.limit;
     this.incrementSession();
     this.updateScore();
   }
@@ -114,7 +114,7 @@ export class CounterComponent implements OnInit, OnChanges {
   buttonText() {
     if (this.status) {
       this.buttonContent = 'Pausar';
-    } else if (this.counter === 0 || this.counter >= this.limit) {
+    } else if (this.counter === this.limit || this.counter >= this.limit) {
       this.buttonContent = 'Iniciar';
     } else {
       this.buttonContent = 'Continuar';

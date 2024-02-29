@@ -2,4 +2,4 @@
   <span class="counter">{{ counterFormatted }}</span>
 </div>
 <button class="auto-button" (click)="toggleAuto()">{{ internalAuto ? "Automático" : "Manual" }}</button>
-<button [class]="{'button': true, 'pause': status, 'continue': !status && counter > 0}" (click)="run()">{{ buttonContent }}</button>
+<button [class]="{'button': true, 'pause': status, 'continue': !status && counter > 0 && counter != limit}" (click)="run()">{{ buttonContent }}</button>

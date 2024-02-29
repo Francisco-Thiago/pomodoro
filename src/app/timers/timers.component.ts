@@ -16,14 +16,14 @@ export class TimersComponent {
   work: Timer = {
     type: Type.Work,
     sessions: 0,
-    counter: 0,
+    counter: 1500,
     limit: 1500,
   };
 
   rest: Timer = {
     type: Type.Rest,
     sessions: 0,
-    counter: 0,
+    counter: 300,
     limit: 300,
   };
 
