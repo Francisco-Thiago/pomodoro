@@ -6,6 +6,19 @@
   box-sizing: border-box;
 }
 
+.flag-group {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  display: flex;
+  gap: 5px;
+
+  .flag {
+    width: 40px;
+    cursor: pointer;
+  }
+}
+
 .container {
   @include flex-column-center();
   color: white;

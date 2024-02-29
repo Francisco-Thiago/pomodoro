@@ -1,0 +1,38 @@
+{
+  "menu": {
+    "pomodoro": "Pomodoro",
+    "short_break": "Short Break",
+    "long_break": "Long Break",
+    "reset_timer": "Reset timer",
+    "clear_finished": "Clear finished tasks",
+    "clear_all": "Clear all tasks",
+    "alert_message": "Are you sure you want remove all tasks?"
+  },
+  "buttons": {
+    "light_mode": "Light Mode",
+    "dark_mode": "Dark Mode",
+    "automatic": "Automatic",
+    "manual": "Manual",
+    "start": "Start",
+    "continue": "Continue",
+    "stop": "Stop"
+  },
+  "tasks": {
+    "tasks": "Tasks",
+    "quantity": "Quantity",
+    "add": "Add task",
+    "remove": "Remove",
+    "edit": "Edit",
+    "timer": "Timer",
+    "done_or_estimated": "Done / Estimated",
+    "save": "Save",
+    "cancel": "Cancel",
+    "finished": "You completed all tasks! Congratulations <3"
+  },
+  "credits": {
+    "created": "Created with",
+    "symbol": "<3",
+    "by": "by",
+    "author": "Francisco Thiago"
+  }
+}

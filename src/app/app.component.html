@@ -1,6 +1,11 @@
 <main class="container">
   <div class="brand">
-    <h1 class="title">Pomodoro</h1>
+    <div class="flag-group">
+      <img class="flag" (click)="changeLanguage('pt')"  src="../assets/img/br.svg" alt="pt">
+      <img class="flag" (click)="changeLanguage('en')" src="../assets/img/us.svg" alt="en">
+    </div>
+    <p translate> short_break </p>
+    <h1 translate class="title"> menu.pomodoro </h1>
     <em class="subtitle">Focus Edition</em>
   </div>
   <app-timers></app-timers>
