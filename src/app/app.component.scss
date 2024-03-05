@@ -1,4 +1,4 @@
-@import './mixins.scss';
+@import './global.scss';
 
 * {
   margin: 0;
@@ -21,7 +21,6 @@
 
 .container {
   @include flex-column-center();
-  color: white;
 
   .brand {
     display: flex;

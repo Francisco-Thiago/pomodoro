@@ -1,16 +1,12 @@
-.circle {
-  margin: 0 auto;
+.timer {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid white;
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
+  flex-direction: column;
+  width: 100%;
+
 
   .counter {
-    color: #ffffff;
-    font-size: 3em;
+    padding: 0 .25em;
+    font-size: 7em;
   }
 }
 
