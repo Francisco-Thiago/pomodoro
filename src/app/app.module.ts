@@ -9,13 +9,15 @@ import { TimerMenuComponent } from './timer-menu/timer-menu.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
     TimersComponent,
-    TimerMenuComponent
+    TimerMenuComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

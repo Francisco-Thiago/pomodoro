@@ -1,0 +1,92 @@
+@import "../global.scss";
+
+$transition-shadow: 0.15s linear;
+
+.menu {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.45em;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  .flag-group {
+    display: flex;
+    gap: 5px;
+
+    .flag {
+      width: 40px;
+      cursor: pointer;
+      filter: invert(0);
+      transition: filter $transition-shadow;
+
+      &:hover {
+        filter: invert(10%);
+      }
+    }
+  }
+
+  .brand {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    width: min-content;
+    gap: 5px;
+
+    .icon {
+      width: 30px;
+      height: min-content;
+    }
+
+    .brand-text {
+      display: grid;
+
+      .title {
+        text-wrap: bold;
+        font-size: 12px;
+      }
+
+      .subtitle {
+        font-size: 10px;
+        text-wrap: nowrap;
+      }
+    }
+  }
+
+  .screen-mode {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 5px;
+    padding: 0 0.5em;
+    border-radius: 5px;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    background-color: transparent;
+    border: none;
+    transition: background-color $transition-shadow;
+
+    .mode-text {
+      font-size: 1.5em;
+    }
+
+    .mode-icon {
+      width: 30px;
+    }
+
+    .dark {
+      filter: invert(100%);
+    }
+
+    &:hover {
+      background-color: $gray;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .menu .screen-mode .mode-text {
+    display: none;
+  }
+}
