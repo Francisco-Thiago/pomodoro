@@ -10,7 +10,9 @@ export class TimerMenuComponent {
   @Input('mode') mode: Type;
   @Output('modeSelected') selected: EventEmitter<Type> = new EventEmitter();
   @Output('clear') clear: EventEmitter<null> = new EventEmitter();
-
+  @Output('auto') externalAuto: EventEmitter<boolean> = new EventEmitter();
+  @Input('auto') internalAuto: boolean;
+  
   modeOptions = Type;
 
   onSelected(mode: Type) {
@@ -20,5 +22,10 @@ export class TimerMenuComponent {
 
   clearCounter() {
     this.clear.emit();
+  }
+
+  toggleAuto() {
+    this.internalAuto = !this.internalAuto;
+    this.externalAuto.emit(this.internalAuto);
   }
 }

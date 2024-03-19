@@ -8,6 +8,7 @@ export class Timer {
 }
 
 export enum Type {
-  Work = 'Work',
-  Rest = 'Rest',
+  Pomodoro = 'Pomodoro',
+  ShortBreak = 'Short Break',
+  LongBreak = 'Long Break'
 }

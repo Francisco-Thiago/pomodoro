@@ -5,7 +5,6 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { Timer, Type } from '../timer.model';
 import { Howl } from 'howler';
@@ -20,9 +19,9 @@ export class CounterComponent implements OnInit, OnChanges {
   @Input('clear') isClear: boolean;
   @Input() autoBreak: boolean;
   @Output('finish') score: EventEmitter<Timer> = new EventEmitter();
-  @Output('auto') externalAuto: EventEmitter<boolean> = new EventEmitter();
-  @Input('auto') internalAuto: boolean;
+  @Input('auto') isAuto: boolean;
 
+  TypeOptions = Type;
   status: boolean;
   counter: number;
   sessions: number;
@@ -47,8 +46,8 @@ export class CounterComponent implements OnInit, OnChanges {
     this.formatCounter(this.limit);
     this.buttonText();
     if (
-      (this.internalAuto && this.sessions > 0) ||
-      (this.internalAuto && this.autoBreak)
+      (this.isAuto && this.sessions > 0) ||
+      (this.isAuto && this.autoBreak)
     ) {
       this.run();
     }
@@ -101,7 +100,7 @@ export class CounterComponent implements OnInit, OnChanges {
 
   incrementSession() {
     this.sessions += 1;
-    if (this.type === Type.Rest) {
+    if (this.type === Type.ShortBreak) {
       this.limit = this.sessions % 4 === 0 ? 900 : 300;
     }
   }
@@ -127,11 +126,6 @@ export class CounterComponent implements OnInit, OnChanges {
     this.counterFormatted = `
         ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
       `;
-  }
-
-  toggleAuto() {
-    this.internalAuto = !this.internalAuto;
-    this.externalAuto.emit(this.internalAuto);
   }
 
   clearCounter() {

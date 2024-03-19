@@ -7,24 +7,31 @@ import { Timer, Type } from '../timer.model';
   styleUrl: './timers.component.scss',
 })
 export class TimersComponent {
-  mode = Type.Work;
+  mode = Type.Pomodoro;
   modeOptions = Type;
   clear = false;
   auto = true;
   autoBreak = false;
 
-  work: Timer = {
-    type: Type.Work,
+  pomodoro: Timer = {
+    type: Type.Pomodoro,
     sessions: 0,
     counter: 1500,
     limit: 1500,
   };
 
-  rest: Timer = {
-    type: Type.Rest,
+  shortBreak: Timer = {
+    type: Type.ShortBreak,
     sessions: 0,
     counter: 300,
     limit: 300,
+  };
+
+  longBreak: Timer = {
+    type: Type.LongBreak,
+    sessions: 0,
+    counter: 900,
+    limit: 900,
   };
 
   changeAuto(auto: boolean) {
@@ -33,11 +40,11 @@ export class TimersComponent {
 
   finish(timer: Timer) {
     this.autoBreak = true;
-    if (this.auto) this.mode = Type.Work === timer.type ? Type.Rest : Type.Work;
-    if (this.work.type === timer.type) {
-      this.work = timer;
+    if (this.auto) this.mode = Type.Pomodoro === timer.type ? Type.ShortBreak : Type.Pomodoro;
+    if (this.pomodoro.type === timer.type) {
+      this.pomodoro = timer;
     } else {
-      this.rest = timer;
+      this.shortBreak = timer;
     }
   }
 

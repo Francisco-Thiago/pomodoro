@@ -2,21 +2,29 @@
   [mode]="mode"
   (modeSelected)="onMode($event)"
   (clear)="onClear()"
+  [auto]="auto"
+  (auto)="changeAuto($event)"
 ></app-timer-menu>
 <app-timer
-  [timer]="work"
+  [timer]="pomodoro"
   [clear]="clear"
   [auto]="auto"
-  (auto)="changeAuto($event)"
   (finish)="finish($event)"
-  *ngIf="mode === modeOptions.Work"
+  *ngIf="mode === modeOptions.Pomodoro"
 ></app-timer>
 <app-timer
-  [timer]="rest"
+  [timer]="shortBreak"
   [clear]="clear"
   [auto]="auto"
-  (auto)="changeAuto($event)"
   (finish)="finish($event)"
   [autoBreak]="autoBreak"
-  *ngIf="mode === modeOptions.Rest"
+  *ngIf="mode === modeOptions.ShortBreak"
+></app-timer>
+<app-timer
+  [timer]="longBreak"
+  [clear]="clear"
+  [auto]="auto"
+  (finish)="finish($event)"
+  [autoBreak]="autoBreak"
+  *ngIf="mode === modeOptions.LongBreak"
 ></app-timer>

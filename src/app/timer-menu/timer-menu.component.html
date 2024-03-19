@@ -1,10 +1,40 @@
 <div class="button-groups">
-  <button class="eraser" (click)="clearCounter()">Limpar</button>
-  <button
-    *ngFor="let option of modeOptions | keyvalue"
-    (click)="onSelected(option.value)"
-    [ngClass]="{ button: true, selected: mode === option.value }"
-  >
-    {{ option.value }}
+  <div class="button-modes">
+    <button
+      (click)="onSelected(modeOptions.Pomodoro)"
+      [ngClass]="{
+        button: true,
+        unselected: mode !== modeOptions.Pomodoro,
+        selected: mode === modeOptions.Pomodoro,
+        pomodoro: true
+      }"
+    >
+      Pomodoro
+    </button>
+    <button
+      (click)="onSelected(modeOptions.ShortBreak)"
+      [ngClass]="{
+        button: true,
+        unselected: mode !== modeOptions.ShortBreak,
+        selected: mode === modeOptions.ShortBreak,
+        'short-break': true
+      }"
+    >
+      Short Break
+    </button>
+    <button
+      (click)="onSelected(modeOptions.LongBreak)"
+      [ngClass]="{
+        button: true,
+        unselected: mode !== modeOptions.LongBreak,
+        selected: mode === modeOptions.LongBreak,
+        'long-break': true
+      }"
+    >
+      Long Break
+    </button>
+  </div>
+  <button class="button" (click)="toggleAuto()">
+    {{ internalAuto ? "Automático" : "Manual" }}
   </button>
 </div>

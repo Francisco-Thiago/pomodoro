@@ -1,5 +1,7 @@
 <div class="timer">
-  <span class="counter">{{ counterFormatted }}</span>
+  <span class="counter no-selectable">{{ counterFormatted }}</span>
+  <span class="current-task">Dê o seu melhor! Dê o seu melhor! Dê o seu melhor! Dê o seu melhor!</span>
 </div>
-<button class="auto-button" (click)="toggleAuto()">{{ internalAuto ? "Automático" : "Manual" }}</button>
-<button [class]="{'button': true, 'pause': status, 'continue': !status && counter > 0 && counter != limit}" (click)="run()">{{ buttonContent }}</button>
+<button [class]="{'button': true, 'pomodoro': type === TypeOptions.Pomodoro, 'long-break': type === TypeOptions.LongBreak, 'short-break': type === TypeOptions.ShortBreak}" (click)="run()">
+  <span class="front no-selectable"> {{ buttonContent }} </span>
+</button>

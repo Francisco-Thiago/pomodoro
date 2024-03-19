@@ -1,10 +1,23 @@
 .button-groups {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-direction: row-reverse;
+  gap: 1em;
   align-items: center;
-  margin: 1em 0;
-  gap: .25em;
+  padding: 1em;
+
+  .button-modes {
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: .25em;
+    justify-content: center;
+
+    .button {
+    flex-grow: 1;
+    }
+  }
 
   .eraser {
     background-color: #ff0000;
@@ -19,22 +32,45 @@
       background-color: #ab0000;
     }
   }
+}
 
-  .button {
-    background-color: #ffffffdf;
-    border-radius: .25em;
-    cursor: pointer;
-    padding: .75em 1em;
-    min-width: 100px;
-    color: black;
-    border: none;
+.button {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 150px;
+  cursor: pointer;
+  padding: .25em;
+  text-wrap: nowrap;
+  min-width: 100px;
+  color: black;
+  border: none;
 
-    &:hover {
-      background-color: #ffffff;
+  &.unselected {
+    background-color: #e3e3e3;
+
+    &:last-child {
+      color: white;
+      background-color: #515151;
+    }
+  }
+
+  &:hover {
+    filter: invert(10%);
+  }
+
+  &.selected {
+    &.pomodoro {
+      background-color: #fd8181;
     }
 
-    &.selected {
-      background-color: #ffffff;
+    &.short-break {
+      background-color: #6ad8f9;
+    }
+
+    &.long-break {
+      background-color: #44eddf;
+
     }
   }
 }
